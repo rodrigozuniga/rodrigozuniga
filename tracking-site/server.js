@@ -72,6 +72,8 @@ function serveDashboard(res) {
   const events = readEvents();
   const byType = {};
   const byClick = {};
+  const byChoice = {}; // menus / radios / sliders: "name = value" -> count
+  const byCarousel = {}; // slide -> count
   const sessions = new Set();
   const visitors = new Set();
   events.forEach(function (e) {
@@ -79,9 +81,29 @@ function serveDashboard(res) {
     if (e.sessionId) sessions.add(e.sessionId);
     if (e.visitorId) visitors.add(e.visitorId);
     if (e.type === "click" && e.label) byClick[e.label] = (byClick[e.label] || 0) + 1;
+    if (
+      (e.type === "select_change" || e.type === "radio_change" || e.type === "slider_change") &&
+      e.name != null
+    ) {
+      const key = e.name + " = " + e.value;
+      byChoice[key] = (byChoice[key] || 0) + 1;
+    }
+    if (e.type === "carousel_change" && e.slide) {
+      byCarousel[e.slide] = (byCarousel[e.slide] || 0) + 1;
+    }
   });
   const row = function (k, v) {
     return "<tr><td>" + k + "</td><td>" + v + "</td></tr>";
+  };
+  const table = function (obj, emptyMsg) {
+    const keys = Object.keys(obj);
+    return (
+      "<table>" +
+      (keys.length
+        ? keys.map(function (k) { return row(k, obj[k]); }).join("")
+        : "<tr><td colspan=2>" + emptyMsg + "</td></tr>") +
+      "</table>"
+    );
   };
   const html =
     "<!doctype html><meta charset=utf-8><title>Tracking dashboard</title>" +
@@ -96,11 +118,9 @@ function serveDashboard(res) {
     "<h2>Events by type</h2><table>" +
     Object.keys(byType).map(function (k) { return row(k, byType[k]); }).join("") +
     "</table>" +
-    "<h2>Button clicks by label</h2><table>" +
-    (Object.keys(byClick).length
-      ? Object.keys(byClick).map(function (k) { return row(k, byClick[k]); }).join("")
-      : "<tr><td colspan=2>No clicks yet</td></tr>") +
-    "</table>" +
+    "<h2>Button clicks by label</h2>" + table(byClick, "No clicks yet") +
+    "<h2>Form choices (menus, radios, sliders)</h2>" + table(byChoice, "No selections yet") +
+    "<h2>Carousel slides viewed</h2>" + table(byCarousel, "No carousel activity yet") +
     "<p><a href='/events'>Raw event data (JSON)</a> &middot; <a href='/'>Back to site</a></p>";
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" }).end(html);
 }

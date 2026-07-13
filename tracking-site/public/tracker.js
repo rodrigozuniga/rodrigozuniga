@@ -63,15 +63,51 @@
   send("page_view");
 
   // --- 2. Button / link clicks ------------------------------------------
-  // Any element with a data-track attribute reports which one was clicked.
+  // Any element with a data-track attribute that is NOT a form control
+  // reports which one was clicked. (Inputs/selects are handled by "change"
+  // below so we record the chosen value, not every click.)
   document.addEventListener("click", function (e) {
     const el = e.target.closest("[data-track]");
-    if (el) {
-      send("click", { label: el.getAttribute("data-track"), text: el.textContent.trim().slice(0, 60) });
+    if (!el) return;
+    const tag = el.tagName.toLowerCase();
+    if (tag === "select" || tag === "input") return; // handled by change
+    send("click", { label: el.getAttribute("data-track"), text: el.textContent.trim().slice(0, 60) });
+  });
+
+  // --- 3. Form controls: menus, radios, sliders -------------------------
+  // One "change" listener covers all three. The event sub-type is derived
+  // from the control so the dashboard can group them.
+  document.addEventListener("change", function (e) {
+    const el = e.target;
+    const label = el.getAttribute && el.getAttribute("data-track");
+    if (!label) return;
+
+    if (el.tagName.toLowerCase() === "select") {
+      send("select_change", { label: label, name: el.name, value: el.value });
+    } else if (el.type === "radio") {
+      send("radio_change", { label: label, name: el.name, value: el.value });
+    } else if (el.type === "range") {
+      // "change" fires on release, so we log the value the user settled on.
+      send("slider_change", { label: label, name: el.name, value: Number(el.value) });
     }
   });
 
-  // --- 3. Scroll depth ---------------------------------------------------
+  // Live-update the <output> next to each slider (display only, not tracking).
+  document.addEventListener("input", function (e) {
+    const el = e.target;
+    if (el.type === "range" && el.getAttribute("output")) {
+      const out = document.getElementById(el.getAttribute("output"));
+      if (out) out.textContent = el.value;
+    }
+  });
+
+  // --- 4. Carousel slide changes ----------------------------------------
+  // carousel.js calls this on every slide change.
+  window.onCarouselChange = function (detail) {
+    send("carousel_change", detail);
+  };
+
+  // --- 5. Scroll depth ---------------------------------------------------
   // Fire once when the visitor first passes each depth milestone.
   const milestones = [25, 50, 75, 100];
   const reached = {};
@@ -91,7 +127,7 @@
     { passive: true }
   );
 
-  // --- 4. Page exit / time on page --------------------------------------
+  // --- 6. Page exit / time on page --------------------------------------
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "hidden") {
       send("page_exit", { timeOnPageMs: Date.now() - pageLoadTime });

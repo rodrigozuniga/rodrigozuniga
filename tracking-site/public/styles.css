@@ -68,6 +68,81 @@ main { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
 section h2 { color: var(--navy); border-left: 5px solid var(--yellow); padding-left: 0.75rem; }
 .story, .visit { padding: 2rem 0; border-top: 1px solid #eee; }
 
+/* ---- Carousel ---- */
+.gallery { padding: 2rem 0; }
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(3, 33, 71, 0.15);
+}
+.carousel-track { display: flex; transition: transform 0.45s ease; }
+.slide { flex: 0 0 100%; margin: 0; }
+.slide svg { display: block; width: 100%; height: auto; }
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(3, 33, 71, 0.55);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.carousel-arrow.prev { left: 0.75rem; }
+.carousel-arrow.next { right: 0.75rem; }
+.carousel-arrow:hover { background: var(--purple); }
+.carousel-dots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.carousel-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 0;
+}
+.carousel-dot.active { background: var(--yellow); }
+
+/* ---- Build a Cup form ---- */
+.build { padding: 2rem 0; border-top: 1px solid #eee; }
+.build-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  margin-top: 1rem;
+}
+.field { display: flex; flex-direction: column; gap: 0.4rem; border: none; padding: 0; margin: 0; }
+.field > span { font-weight: 600; color: var(--navy); }
+.field select {
+  padding: 0.55rem 0.7rem;
+  border: 2px solid #d7dbe2;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: #fff;
+}
+.radios { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.radios label { font-weight: 400; display: flex; align-items: center; gap: 0.35rem; }
+.field input[type="range"] { width: 100%; accent-color: var(--purple); }
+.field output { font-weight: 700; color: var(--purple); }
+.build-form > .btn { grid-column: 1 / -1; justify-self: start; }
+
+@media (max-width: 720px) {
+  .build-form { grid-template-columns: 1fr; }
+}
+
 .site-footer {
   margin-top: 2rem;
   padding: 2rem;

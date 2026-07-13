@@ -11,6 +11,7 @@
     <div class="brand">Aurora Coffee</div>
     <nav>
       <a href="#story" data-track="nav-story">Our Story</a>
+      <a href="#build" data-track="nav-build">Build a Cup</a>
       <a href="#visit" data-track="nav-visit">Visit</a>
     </nav>
   </header>
@@ -52,6 +53,53 @@
       </div>
     </section>
 
+    <!-- ============ PICTURE CAROUSEL ============ -->
+    <section id="gallery" class="gallery">
+      <h2>Gallery</h2>
+      <div class="carousel" data-track-carousel="gallery">
+        <div class="carousel-track">
+          <figure class="slide" data-slide="beans">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="300" fill="#5a3a1e"/>
+              <g fill="#3a2411">
+                <ellipse cx="150" cy="120" rx="42" ry="30"/><ellipse cx="300" cy="180" rx="42" ry="30"/>
+                <ellipse cx="450" cy="110" rx="42" ry="30"/><ellipse cx="230" cy="220" rx="42" ry="30"/>
+                <ellipse cx="400" cy="220" rx="42" ry="30"/>
+              </g>
+              <text x="30" y="270" fill="#fff3d6" font-family="system-ui" font-size="26">The beans</text>
+            </svg>
+          </figure>
+          <figure class="slide" data-slide="roaster">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="300" fill="#032147"/>
+              <circle cx="300" cy="150" r="80" fill="#209dd7"/>
+              <rect x="260" y="150" width="80" height="90" fill="#0b3a6b"/>
+              <text x="30" y="270" fill="#fff3d6" font-family="system-ui" font-size="26">The roaster</text>
+            </svg>
+          </figure>
+          <figure class="slide" data-slide="cafe">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="300" fill="#753991"/>
+              <rect x="120" y="90" width="160" height="120" rx="8" fill="#ecad0a"/>
+              <rect x="330" y="120" width="150" height="90" rx="8" fill="#fff3d6"/>
+              <text x="30" y="270" fill="#fff3d6" font-family="system-ui" font-size="26">The cafe</text>
+            </svg>
+          </figure>
+          <figure class="slide" data-slide="pour">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="300" fill="#ecad0a"/>
+              <path d="M250 60 q60 60 20 150 q-30 40 -80 20" fill="none" stroke="#5a3a1e" stroke-width="14"/>
+              <ellipse cx="300" cy="240" rx="90" ry="22" fill="#5a3a1e"/>
+              <text x="30" y="285" fill="#032147" font-family="system-ui" font-size="26">The pour</text>
+            </svg>
+          </figure>
+        </div>
+        <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous slide">&#8249;</button>
+        <button class="carousel-arrow next" data-carousel-next aria-label="Next slide">&#8250;</button>
+        <div class="carousel-dots" data-carousel-dots></div>
+      </div>
+    </section>
+
     <section id="story" class="story">
       <h2>Our Story</h2>
       <p>
@@ -61,6 +109,67 @@
         temperature, the grind, the wait.
       </p>
       <button class="btn btn-secondary" data-track="story-more">Read the full story</button>
+    </section>
+
+    <!-- ============ BUILD A CUP: menus, radios, sliders ============ -->
+    <section id="build" class="build">
+      <h2>Build a Cup</h2>
+      <p>Every control below is tracked as you change it.</p>
+      <form class="build-form" id="build-form">
+        <!-- Pull-down menus -->
+        <label class="field">
+          <span>Roast level</span>
+          <select name="roast" data-track="select-roast">
+            <option value="light">Light</option>
+            <option value="medium" selected>Medium</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Bean origin</span>
+          <select name="origin" data-track="select-origin">
+            <option value="ethiopia">Ethiopia</option>
+            <option value="colombia">Colombia</option>
+            <option value="sumatra">Sumatra</option>
+            <option value="guatemala">Guatemala</option>
+          </select>
+        </label>
+
+        <!-- Radio selectors -->
+        <fieldset class="field">
+          <span>Cup size</span>
+          <div class="radios">
+            <label><input type="radio" name="size" value="small" data-track="radio-size"> Small</label>
+            <label><input type="radio" name="size" value="medium" data-track="radio-size" checked> Medium</label>
+            <label><input type="radio" name="size" value="large" data-track="radio-size"> Large</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <span>Milk</span>
+          <div class="radios">
+            <label><input type="radio" name="milk" value="none" data-track="radio-milk" checked> None</label>
+            <label><input type="radio" name="milk" value="oat" data-track="radio-milk"> Oat</label>
+            <label><input type="radio" name="milk" value="whole" data-track="radio-milk"> Whole</label>
+          </div>
+        </fieldset>
+
+        <!-- Sliders -->
+        <label class="field">
+          <span>Sweetness: <output id="out-sweetness">2</output>/5</span>
+          <input type="range" name="sweetness" min="0" max="5" step="1" value="2"
+                 data-track="slider-sweetness" output="out-sweetness">
+        </label>
+
+        <label class="field">
+          <span>Quantity: <output id="out-quantity">1</output> bag(s)</span>
+          <input type="range" name="quantity" min="1" max="10" step="1" value="1"
+                 data-track="slider-quantity" output="out-quantity">
+        </label>
+
+        <button type="button" class="btn btn-primary" data-track="build-add">Add to order</button>
+      </form>
     </section>
 
     <section id="visit" class="visit">
@@ -77,5 +186,6 @@
   </footer>
 
   <script src="/tracker.js"></script>
+  <script src="/carousel.js"></script>
 </body>
 </html>
