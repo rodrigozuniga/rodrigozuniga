@@ -34,6 +34,20 @@ Click the buttons and scroll to generate events, then refresh the dashboard.
 4. `server.js` appends one JSON object per line to `data/events.jsonl`
    (JSON Lines - an append-only log). This file is the stored result.
 
+## SEO
+
+The page ships with basic on-page SEO:
+
+- A descriptive `<title>` and `<meta name="description">`.
+- `canonical`, `robots`, and `theme-color` meta tags.
+- Open Graph and Twitter Card tags (with `og-image.svg`) for link previews.
+- `CafeOrCoffeeShop` JSON-LD structured data.
+- `robots.txt` (which disallows `/dashboard` and `/events`) and `sitemap.xml`.
+- One `<h1>`, section `<h2>`s, and `<figcaption>`s on the gallery images.
+
+The canonical/OG URLs use the placeholder domain `aurora-coffee.example.com` -
+change it to your real domain before deploying.
+
 ## What gets stored, and what it means as tracking data
 
 Every stored event looks roughly like this:

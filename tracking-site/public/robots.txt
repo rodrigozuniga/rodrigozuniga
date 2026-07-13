@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /events
+
+Sitemap: https://aurora-coffee.example.com/sitemap.xml

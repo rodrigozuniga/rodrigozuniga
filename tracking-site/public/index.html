@@ -3,7 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurora Coffee - Sample Tracked Website</title>
+
+  <!-- Primary SEO metadata -->
+  <title>Aurora Coffee | Small-Batch Coffee Roasted at Dawn</title>
+  <meta name="description" content="Aurora Coffee is a small-batch roaster on Lantern Street. Dawn-roasted beans, single origins, and a slow pour. Build your cup and visit us 7am-2pm daily." />
+  <link rel="canonical" href="https://aurora-coffee.example.com/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#032147" />
+
+  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aurora Coffee" />
+  <meta property="og:title" content="Aurora Coffee | Small-Batch Coffee Roasted at Dawn" />
+  <meta property="og:description" content="Dawn-roasted, small-batch beans and a slow pour. Build your cup and visit us on Lantern Street." />
+  <meta property="og:url" content="https://aurora-coffee.example.com/" />
+  <meta property="og:image" content="https://aurora-coffee.example.com/og-image.svg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aurora Coffee | Small-Batch Coffee Roasted at Dawn" />
+  <meta name="twitter:description" content="Dawn-roasted, small-batch beans and a slow pour. Build your cup and visit us on Lantern Street." />
+  <meta name="twitter:image" content="https://aurora-coffee.example.com/og-image.svg" />
+
+  <!-- Structured data: local coffee shop -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Aurora Coffee",
+    "description": "Small-batch coffee roaster, roasted at dawn and poured slow.",
+    "url": "https://aurora-coffee.example.com/",
+    "servesCuisine": "Coffee",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "14 Lantern Street"
+    },
+    "openingHours": "Mo-Su 07:00-14:00"
+  }
+  </script>
+
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -59,7 +98,7 @@
       <div class="carousel" data-track-carousel="gallery">
         <div class="carousel-track">
           <figure class="slide" data-slide="beans">
-            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freshly roasted coffee beans">
               <rect width="600" height="300" fill="#5a3a1e"/>
               <g fill="#3a2411">
                 <ellipse cx="150" cy="120" rx="42" ry="30"/><ellipse cx="300" cy="180" rx="42" ry="30"/>
@@ -68,30 +107,34 @@
               </g>
               <text x="30" y="270" fill="#fff3d6" font-family="system-ui" font-size="26">The beans</text>
             </svg>
+            <figcaption>Single-origin beans, roasted in small batches.</figcaption>
           </figure>
           <figure class="slide" data-slide="roaster">
-            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The dawn coffee roaster at work">
               <rect width="600" height="300" fill="#032147"/>
               <circle cx="300" cy="150" r="80" fill="#209dd7"/>
               <rect x="260" y="150" width="80" height="90" fill="#0b3a6b"/>
               <text x="30" y="270" fill="#fff3d6" font-family="system-ui" font-size="26">The roaster</text>
             </svg>
+            <figcaption>Our drum roaster, fired up at first light.</figcaption>
           </figure>
           <figure class="slide" data-slide="cafe">
-            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Aurora Coffee cafe interior">
               <rect width="600" height="300" fill="#753991"/>
               <rect x="120" y="90" width="160" height="120" rx="8" fill="#ecad0a"/>
               <rect x="330" y="120" width="150" height="90" rx="8" fill="#fff3d6"/>
               <text x="30" y="270" fill="#fff3d6" font-family="system-ui" font-size="26">The cafe</text>
             </svg>
+            <figcaption>The cafe on Lantern Street.</figcaption>
           </figure>
           <figure class="slide" data-slide="pour">
-            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A slow pour-over coffee being made">
               <rect width="600" height="300" fill="#ecad0a"/>
               <path d="M250 60 q60 60 20 150 q-30 40 -80 20" fill="none" stroke="#5a3a1e" stroke-width="14"/>
               <ellipse cx="300" cy="240" rx="90" ry="22" fill="#5a3a1e"/>
               <text x="30" y="285" fill="#032147" font-family="system-ui" font-size="26">The pour</text>
             </svg>
+            <figcaption>Every cup, poured slow.</figcaption>
           </figure>
         </div>
         <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous slide">&#8249;</button>
