@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Coffee - Sample Tracked Website</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Aurora Coffee</div>
+    <nav>
+      <a href="#story" data-track="nav-story">Our Story</a>
+      <a href="#visit" data-track="nav-visit">Visit</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Coffee that follows the light.</h1>
+        <p class="lead">
+          Small-batch beans, roasted at dawn, poured slow. A quiet corner of
+          the city where every cup is measured, not rushed.
+        </p>
+        <div class="actions">
+          <button class="btn btn-primary" data-track="cta-order">Order a bag</button>
+          <button class="btn btn-secondary" data-track="cta-menu">See the menu</button>
+          <button class="btn btn-ghost" data-track="cta-newsletter">Join newsletter</button>
+        </div>
+      </div>
+
+      <!-- The "picture": an inline SVG so the page is fully self-contained -->
+      <div class="hero-art" aria-label="Illustration of a coffee cup at sunrise" role="img">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ecad0a"/>
+              <stop offset="1" stop-color="#753991"/>
+            </linearGradient>
+          </defs>
+          <circle cx="200" cy="200" r="190" fill="url(#sky)"/>
+          <circle cx="200" cy="150" r="55" fill="#fff3d6" opacity="0.9"/>
+          <g transform="translate(120 210)">
+            <path d="M0 20 q100 -30 180 0 l-18 90 q-72 24 -144 0 z" fill="#032147"/>
+            <path d="M180 40 q46 -4 46 34 q0 40 -50 40" fill="none" stroke="#032147" stroke-width="14"/>
+            <ellipse cx="90" cy="24" rx="88" ry="16" fill="#5a3a1e"/>
+            <path d="M60 -30 q-12 -22 6 -40 M96 -34 q-12 -22 6 -40 M132 -30 q-12 -22 6 -40"
+                  fill="none" stroke="#fff3d6" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section id="story" class="story">
+      <h2>Our Story</h2>
+      <p>
+        Aurora started as a single roaster in a converted garage. We chase the
+        first light of morning because that is when the beans are coolest and
+        the roast is most even. Everything here is deliberate: the water
+        temperature, the grind, the wait.
+      </p>
+      <button class="btn btn-secondary" data-track="story-more">Read the full story</button>
+    </section>
+
+    <section id="visit" class="visit">
+      <h2>Visit Us</h2>
+      <p>14 Lantern Street. Open 7am to 2pm, every day the sun comes up.</p>
+      <button class="btn btn-primary" data-track="visit-directions">Get directions</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>This is a demonstration site. It records anonymous usage analytics -
+       see <code>README.md</code> for exactly what is stored and why.</p>
+    <p><a href="/dashboard" data-track="footer-dashboard">View the collected tracking data</a></p>
+  </footer>
+
+  <script src="/tracker.js"></script>
+</body>
+</html>
